@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- 指定数据库配置文件-->
+	<properties resource="db.properties"></properties>
+	<!-- 配置当前工程所需要的MyBatis环境变量-->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事物：数据库的一系列操作叫做“数据库事物”，事物中的CRUD操作要么都执行，要么都不执行-“原子性” -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 配置数据源（MyBatis自带“数据库连接池”）暂时不配置，后续再SSM中配置 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${user}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 注册ORM映射文件 -->
+	<mappers>
+		<mapper resource="com/blm/work/domain/WorkMapper.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blm.work.domain.WorkMapper">
+
+	<!-- 修改学生班级信息 -->
+	<update id="updateGrade" parameterType="com.blm.work.domain.Student">
+		update student set gid = #{grade.gid} where sid=#{sid}
+	</update>
+	
+	<!-- 通过id查询班级信息 -->
+	<select id="selectGrade" parameterType="int" resultType="com.blm.work.domain.Grade">
+		select gid,gname from grade where gid=#{gid}
+	</select>
+	
+	<!-- 删除某个学生的信息 -->
+	<update id="updateOne" parameterType="int">
+		update student set gid = null where sid = #{sid}
+	</update>
+	<delete id="deleteOne" parameterType="int">
+		delete from student where sid = #{sid}
+	</delete>
+	
+	<!-- 删除某个班级 -->
+	<delete id="deleteAll" parameterType="int">
+		delete from grade where gid = #{gid}
+	</delete>
+	<delete id="deleteStudent" parameterType="com.blm.work.domain.Student">
+		delete from student where gid=#{grade.gid}
+	</delete>
+</mapper>
